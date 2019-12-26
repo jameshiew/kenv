@@ -10,23 +10,27 @@ func CurrentPrefixDir() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return PrefixDir(version)
+	return prefixDir(version)
 }
 
-func PrefixDir(version string) (string, error) {
-	versions, err := versionsDir()
-	if err != nil {
-		return "", nil
-	}
-	if version == "system" {
-		return "", fmt.Errorf("no prefix for system kubectl")
-	}
+func ExistingPrefixDir(version string) (string, error) {
 	exists, err := existsVersion(version)
 	if err != nil {
 		return "", nil
 	}
 	if !exists {
 		return "", fmt.Errorf("version %v is not installed", version)
+	}
+	return prefixDir(version)
+}
+
+func prefixDir(version string) (string, error) {
+	versions, err := versionsDir()
+	if err != nil {
+		return "", nil
+	}
+	if version == "system" {
+		return "", fmt.Errorf("no prefix for system kubectl")
 	}
 	return filepath.Join(versions, version), nil
 }

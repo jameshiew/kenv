@@ -39,7 +39,7 @@ func initializeKubectlVersion(version, goOS, goArchitecture string) error {
 	if err != nil {
 		return err
 	}
-	versionDir, err := PrefixDir(version)
+	versionDir, err := prefixDir(version)
 	if err != nil {
 		return err
 	}

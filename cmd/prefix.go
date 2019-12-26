@@ -18,7 +18,7 @@ var prefixCmd = &cobra.Command{
 		}
 		version := args[0]
 		utils.PrintAndExit(cmd, func() (s string, err error) {
-			return internal.PrefixDir(version)
+			return internal.ExistingPrefixDir(version)
 		})
 	},
 }
