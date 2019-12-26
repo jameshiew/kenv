@@ -58,6 +58,7 @@ func initializeKubectlVersion(version, goOS, goArchitecture string) error {
 func downloadKubectl(filepath, version, goOS, goArchitecture string) error {
 	// download appropriate kubectl binary for version
 	url := constructKubectlURL(version, goOS, goArchitecture)
+	/* #nosec G107 */
 	resp, err := http.Get(url)
 	if err != nil {
 		return err

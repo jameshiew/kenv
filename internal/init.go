@@ -70,7 +70,7 @@ func initializeShims() error {
 
 set -euo pipefail
 
-if [[ $(kenv version) == "system" ]]
+if [[ $(kenv version) == "` + systemVersion + `" ]]
 then
   SYSTEM_KUBECTL="$(which -a kubectl | sed -n 2p)"
 	if [[ -z ${SYSTEM_KUBECTL} ]]
