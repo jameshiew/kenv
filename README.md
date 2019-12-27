@@ -18,7 +18,7 @@ kenv may work with other similar shells or setups, though they are not (yet) sup
     go get github.com/jameshiew/kenv
     kenv init  # initializes the `.kube/kenv` directory, where shims and kubectl versions will be stored
     eval "$(kenv init -)"  # activates kenv for this shell session
-    echo 'command -v kenv && eval "$(kenv init -)"' >> ~/.bashrc  # (or ~/.bash_profile) - load kenv into your shell at start up
+    echo 'command -v kenv >/dev/null 2>&1 && eval "$(kenv init -)"' >> ~/.bashrc  # (or ~/.bash_profile) - load kenv into your shell at start up
 }
 ```
 
