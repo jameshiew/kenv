@@ -29,7 +29,7 @@ func prefixDir(version string) (string, error) {
 	if err != nil {
 		return "", nil
 	}
-	if version == "system" {
+	if version == systemVersion {
 		return "", fmt.Errorf("no prefix for system kubectl")
 	}
 	return filepath.Join(versions, version), nil

@@ -1,4 +1,4 @@
-FROM kenv:latest
+FROM docker.pkg.github.com/jameshiew/kenv/kenv:latest
 RUN go get -v github.com/mikefarah/yq/v2
 
 FROM ubuntu:18.04

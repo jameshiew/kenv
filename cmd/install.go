@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/jameshiew/kenv/cmd/internal/utils"
 	"runtime"
 
+	"github.com/jameshiew/kenv/cmd/internal/utils"
 	"github.com/jameshiew/kenv/internal"
 
 	"github.com/spf13/cobra"

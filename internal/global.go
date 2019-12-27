@@ -23,7 +23,7 @@ func GlobalVersion() (string, error) {
 	version, err := ioutil.ReadFile(globalConfPath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return "system", nil
+			return systemVersion, nil
 		}
 		return "", err
 	}

@@ -1,9 +1,10 @@
 package cmd
 
 import (
+	"strings"
+
 	"github.com/jameshiew/kenv/cmd/internal/utils"
 	"github.com/jameshiew/kenv/internal"
-	"strings"
 
 	"github.com/spf13/cobra"
 )

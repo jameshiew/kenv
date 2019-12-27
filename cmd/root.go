@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/jameshiew/kenv/cmd/internal/utils"
 	"os"
 
+	"github.com/jameshiew/kenv/cmd/internal/utils"
 	"github.com/jameshiew/kenv/internal"
 
 	"github.com/spf13/cobra"

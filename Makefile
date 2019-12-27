@@ -1,6 +1,6 @@
 .PHONY: build autoformat lint clean run image install  # TODO: make this .PHONY easier to keep up to date...
 
-build: lint
+build:
 	go build \
 		-v \
 		-ldflags "-X github.com/jameshiew/kenv/cmd.Version=dev-$(shell date +%s)" \
@@ -10,26 +10,24 @@ autoformat:
 	gofmt -w .
 
 lint:
-	gofmt -l . # TODO make this error out
-	golint ./...
-	go vet ./...
+	docker run --rm -v $(shell pwd):/goapp -e RUN=1 -e REPO=github.com/jameshiew/kenv golangci/build-runner goenvbuild
 
 test-e2e-image: image
-	docker build -f test/e2e/Dockerfile -t kenv-test .
+	docker build -f test/e2e/Dockerfile -t docker.pkg.github.com/jameshiew/kenv/kenv-test .
 
 test-e2e: test-e2e-image
-	docker run kenv-test
+	docker run docker.pkg.github.com/jameshiew/kenv/kenv-test
 
 clean:
 	go clean
 
 run: build
-	./kenv --help
+	./kenv --version
 
 image:
-	docker build -f build/package/Dockerfile -t kenv .
+	docker build -f build/package/Dockerfile -t docker.pkg.github.com/jameshiew/kenv/kenv .
 
-install: lint
+install:
 	go install \
 		-v \
 		-ldflags "-X github.com/jameshiew/kenv/cmd.Version=dev-$(shell date +%s)"

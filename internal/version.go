@@ -5,6 +5,8 @@ import (
 	"os/exec"
 )
 
+const systemVersion = "system"
+
 func CurrentVersion() (string, error) {
 	shell, err := ShellVersion()
 	if err != nil {
@@ -38,7 +40,7 @@ func CurrentVersion() (string, error) {
 }
 
 func existsVersion(version string) (bool, error) {
-	if version == "system" {
+	if version == systemVersion {
 		cmd := exec.Command("command", "-v", "kubectl")
 		err := cmd.Run()
 		if err != nil {
