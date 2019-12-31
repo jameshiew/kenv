@@ -3,7 +3,7 @@
 build:
 	go build \
 		-v \
-		-ldflags "-X github.com/jameshiew/kenv/cmd.Version=dev-$(shell date +%s)" \
+		-ldflags "-X main.version=dev-$(shell date +%s)" \
 		-o kenv main.go
 
 autoformat:
@@ -34,4 +34,7 @@ image:
 install:
 	go install \
 		-v \
-		-ldflags "-X github.com/jameshiew/kenv/cmd.Version=dev-$(shell date +%s)"
+		-ldflags "-X main.version=dev-$(shell date +%s)"
+
+test-release:
+	goreleaser --snapshot --skip-publish --rm-dist
