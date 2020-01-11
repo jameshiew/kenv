@@ -1,4 +1,4 @@
-.PHONY: build autoformat lint clean run image install  # TODO: make this .PHONY easier to keep up to date...
+.PHONY: build autoformat lint test clean run image install  # TODO: make this .PHONY easier to keep up to date...
 
 build:
 	go build \
@@ -11,6 +11,10 @@ autoformat:
 
 lint:
 	docker run --rm -v $(shell pwd):/goapp -e RUN=1 -e REPO=github.com/jameshiew/kenv golangci/build-runner goenvbuild
+
+test:
+	go test -race -v ./...
+	bats test
 
 test-e2e-image: image
 	docker build -f test/e2e/Dockerfile -t docker.pkg.github.com/jameshiew/kenv/kenv-test .

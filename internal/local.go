@@ -22,9 +22,6 @@ func LocalVersion() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	if current == filesystemRoot {
-		return "", fmt.Errorf("may not set a local kubectl version for the filesystemRoot directory")
-	}
 
 	for ; current != filesystemRoot; current = filepath.Dir(current) {
 		contents, err := ioutil.ReadFile(filepath.Join(current, configurationFilename))
@@ -46,6 +43,14 @@ func LocalVersion() (string, error) {
 }
 
 func SetLocalVersion(version string) error {
+	current, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	if current == filesystemRoot {
+		return fmt.Errorf("may not set a local kubectl version for the root directory")
+	}
+
 	exists, err := existsVersion(version)
 	if err != nil {
 		return err
