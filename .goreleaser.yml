@@ -28,6 +28,15 @@ checksum:
   name_template: 'checksums.txt'
 #signs:
 #  - artifacts: all
+brew:
+  github:
+    owner: jameshiew
+    name: homebrew-kenv
+  folder: Formula
+  homepage: https://github.com/jameshiew/kenv
+  description: "Manage multiple kubectl versions"
+  test: |
+    system "#{bin}/kenv --version"
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
