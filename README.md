@@ -7,7 +7,7 @@ A [pyenv](https://github.com/pyenv/pyenv)-like CLI tool for managing and using m
 ### Prerequisites
 
 - UNIX-like operating system (e.g. macOS, Ubuntu)
-- bash 
+- bash
 
 kenv may work with other similar shells or setups, though they are not (yet) supported.
 
@@ -41,7 +41,7 @@ If no global version is set with `kenv`, the system's kubectl will be used by de
 ### Set a local kubectl version
 
 ```shell script
-kenv local 1.17.0 
+kenv local 1.17.0
 ```
 
 Creates a `.kenv.yml` file in the local directory, that will record the `kubectl` version to use.
