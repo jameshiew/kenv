@@ -1,7 +1,8 @@
 name: goreleaser
 on:
-  pull_request:
   push:
+    tags:
+      - '*'
 jobs:
   goreleaser:
     runs-on: ubuntu-18.04
