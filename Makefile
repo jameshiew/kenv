@@ -9,13 +9,16 @@ build:
 autoformat:
 	gofmt -w .
 
+lint-editorconfig:
+	docker run --rm -v $(shell pwd):/app/code odannyc/eclint check
+
 lint-dockerfiles:
 	find . -name Dockerfile | xargs -I {} sh -c 'docker run --rm -i hadolint/hadolint:v1.17.4-0-g43bca62-debian < {}'
 
 lint-go:
 	docker run --rm -v $(shell pwd):/goapp -e RUN=1 -e REPO=github.com/jameshiew/kenv golangci/build-runner goenvbuild
 
-lint: lint-dockerfiles lint-go
+lint: lint-dockerfiles lint-editorconfig lint-go
 
 test:
 	go test -race -v ./...
