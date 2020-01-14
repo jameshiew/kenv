@@ -1,8 +1,9 @@
 package internal
 
 import (
-	"os"
 	"path/filepath"
+
+	"github.com/jameshiew/kenv/internal/compat"
 )
 
 const (
@@ -11,7 +12,7 @@ const (
 )
 
 func RootDir() (string, error) {
-	home, err := os.UserHomeDir()
+	home, err := compat.UserHomeDir()
 	if err != nil {
 		return "", err
 	}

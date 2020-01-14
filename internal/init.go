@@ -49,7 +49,7 @@ func initializeKenvDirectory() error {
 		return err
 	}
 	for _, dir := range []string{"versions", "shims"} {
-		err := os.MkdirAll(filepath.Join(root, dir), 0o744)
+		err := os.MkdirAll(filepath.Join(root, dir), 0744)
 		if err != nil {
 			return err
 		}
@@ -84,7 +84,7 @@ else
   "${PREFIX}"/kubectl $@
 fi
 `
-	err = ioutil.WriteFile(filepath.Join(shims, "kubectl"), []byte(script), 0o744)
+	err = ioutil.WriteFile(filepath.Join(shims, "kubectl"), []byte(script), 0744)
 	if err != nil {
 		return err
 	}
