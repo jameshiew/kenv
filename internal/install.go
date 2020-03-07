@@ -30,7 +30,7 @@ func constructKubectlURL(version, goOS, goArchitecture string) string {
 func initializeKubectlVersion(version, goOS, goArchitecture string) error {
 	random := fmt.Sprintf("%v", rand.Int63())
 	tmpDir := filepath.Join(os.TempDir(), "kenv", random)
-	err := os.MkdirAll(tmpDir, 0o744)
+	err := os.MkdirAll(tmpDir, 0744)
 	if err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func initializeKubectlVersion(version, goOS, goArchitecture string) error {
 	if err != nil {
 		return err
 	}
-	err = os.MkdirAll(versionDir, 0o744)
+	err = os.MkdirAll(versionDir, 0744)
 	if err != nil {
 		return err
 	}
@@ -93,7 +93,7 @@ func downloadKubectl(filepath, version, goOS, goArchitecture string) error {
 		return err
 	}
 	bar.Finish()
-	err = os.Chmod(filepath, 0o744)
+	err = os.Chmod(filepath, 0744)
 	if err != nil {
 		return err
 	}

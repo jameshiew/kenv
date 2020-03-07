@@ -42,5 +42,5 @@ func SetGlobalVersion(version string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(globalConfPath, []byte(version), 0o644)
+	return ioutil.WriteFile(globalConfPath, []byte(version), 0644)
 }
