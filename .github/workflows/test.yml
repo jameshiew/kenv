@@ -4,12 +4,26 @@ jobs:
   lint:
     runs-on: ubuntu-18.04
     steps:
-        - uses: actions/checkout@v1
-        - run: make lint
-  e2e:
+      - uses: actions/checkout@v1
+      - run: make lint
+  build:
     runs-on: ubuntu-18.04
     needs:
       - lint
+    strategy:
+      matrix:
+        # supported versions - https://golang.org/doc/devel/release.html#policy
+        go: [ '1.13.x', '1.12.x', '1.11.x' ]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go }}
+      - run: make build
+  e2e:
+    runs-on: ubuntu-18.04
+    needs:
+      - build
     steps:
       - uses: actions/checkout@v1
       - name: Run E2E tests

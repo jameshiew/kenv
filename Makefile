@@ -9,15 +9,20 @@ build:
 autoformat:
 	gofmt -w .
 
-lint:
+lint-dockerfiles:
+	find . -name Dockerfile | xargs -I {} sh -c 'docker run --rm -i hadolint/hadolint:v1.17.4-0-g43bca62-debian < {}'
+
+lint-go:
 	docker run --rm -v $(shell pwd):/goapp -e RUN=1 -e REPO=github.com/jameshiew/kenv golangci/build-runner goenvbuild
+
+lint: lint-dockerfiles lint-go
 
 test:
 	go test -race -v ./...
 	bats test
 
 test-e2e-image: image
-	docker build -f test/e2e/Dockerfile -t docker.pkg.github.com/jameshiew/kenv/kenv-test .
+	cd test/e2e && docker build -t docker.pkg.github.com/jameshiew/kenv/kenv-test .
 
 test-e2e: test-e2e-image
 	docker run docker.pkg.github.com/jameshiew/kenv/kenv-test

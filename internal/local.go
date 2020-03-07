@@ -62,5 +62,5 @@ func SetLocalVersion(version string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(configurationFilename, yml, 0o644)
+	return ioutil.WriteFile(configurationFilename, yml, 0644)
 }
